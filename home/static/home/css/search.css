@@ -1,0 +1,11 @@
+div#search .btn {
+  margin: 0px;
+  background-color: #333;
+  border-color: #333;
+}
+
+@media (max-width: 600px) { 
+  div#ok .okk {
+    width: 90%!important;
+  }
+}

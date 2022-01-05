@@ -1,0 +1,101 @@
+{% extends 'home/base/base.html' %}
+
+{% load static %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+    <div style="margin-top: 4em;margin-bottom: 2.5rem;border-bottom: 1px solid rgb(231,235,239) ;">
+        <!-- Start: 1 Row 2 Columns -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-8">
+                    <div class="ok"><img src="{% static 'home/img/leaf-1170x780.jpg' %}">
+                        <hr class="style-one"><a href="#">
+                            <h4 data-bss-hover-animate="swing" style="color: rgb(0,0,0);text-align: center;"><br>{{categ.name}}<br><br></h4>
+                        </a>
+                    <!--    <p class="" style="color: rgb(0,0,0);">Lommodo ligula eget dolor. Aenean massa. Cum sociis que penatibus
+                            et magnis dis parturient montes lorem, nascetur ridiculus mus. Donec quam felis, ultricies
+                            nec, pellentesque euro, pretium quis, sem. Nulla onsequat massa quis enim. Donec pede justo
+                            fringilla vel aliquet nec vulputate eget.&nbsp; &nbsp;<br><br>Lorem ispum dolore siamet
+                            ipsum dolor.Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore,
+                            cum soluta nobis est eligendi optio cumquer nihil impedit quo minus id quod maxime placeat
+                            facere.&nbsp;At vero eos et accusamus et iusto odio dignissimos ducimus quilor.<br><br></p> -->
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        {% for items in page_obj %}
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-6 col-md-5 col-lg-5"><a href=""><img
+                                            src="{{items.image.url}}" /></a>
+                                </div>
+                                <div class="col-sm-6 col-md-7 col-lg-7">
+                                    <a href="{% url 'detail_content' items.categories.categorie_child.slug items.categories.slug_child items.slug %}">
+                                        <h5>{{items.title}}</h5>
+                                    </a>
+                                    <p>{{items.description}}</p>
+                                    <p><strong>{{items.datetime}}</strong><br/></p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <br>
+                        <br>
+                        <div style="display:inherit;text-align:center" class="pagination">
+                            <span class="step-links">
+                                {% if page_obj.has_previous %}
+                                    <a href="?page=1">&laquo; first</a>
+                                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                {% endif %}
+                        
+                                <span class="current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                </span>
+                        
+                                {% if page_obj.has_next %}
+                                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% include 'home/include/content_right.html' %}
+            </div>
+        </div><!-- End: 1 Row 2 Columns -->
+    </div>
+    <div style="border-bottom: 1px solid rgb(231,235,239);margin-bottom: 4rem;">
+        <!-- Start: 1 Row 3 Columns -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" style="padding: 0px;">
+                    <div class="bottom-011"
+                        style="background: #ffffff;border-bottom-width: 1px;border-bottom-style: solid;">
+                        <p style="margin-bottom: 0.5rem;filter: contrast(120%);">&nbsp;ABOUT ME</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="bottom-011"
+                        style="background: #ffffff;border-bottom-width: 1px;border-bottom-style: solid;">
+                        <p style="margin-bottom: 0.5rem;filter: brightness(0%) contrast(120%);">PAGE</p>
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding: 0px;">
+                    <div class="bottom-011"
+                        style="background: #ffffff;border-bottom-width: 1px;border-bottom-style: solid;">
+                        <p style="margin-bottom: 0.5rem;filter: brightness(0%) contrast(120%);">&nbsp;NEWSLETTER<br></p>
+                    </div>
+                    <div class="row" style="width: 100%;margin: 0px;">
+                        <!-- Start: Form-1 -->
+                        <div class="col-md-6" style="width: 100%;">
+                            <form><input class="border rounded-0 form-control" type="text" placeholder="Name"
+                                    style="margin-bottom: 1rem;" /><input class="border rounded-0 form-control"
+                                    type="email" placeholder="Email" style="margin-bottom: 1rem;" /><input
+                                    class="zzz border rounded-0 form-control" type="submit" value="SUBSCRIBE NOW" />
+                            </form>
+                        </div><!-- End: Form-1 -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- End: 1 Row 3 Columns -->
+    </div>
+{% endblock %}

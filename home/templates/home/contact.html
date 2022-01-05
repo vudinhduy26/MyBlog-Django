@@ -1,0 +1,90 @@
+{% extends 'home/base/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Contact
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'home/css/contact.css' %}">
+{% endblock %}
+{% block content %}
+    <div style="margin-top: 4em;margin-bottom: 2.5rem;border-bottom: 1px solid rgb(231,235,239) ;">
+        <!-- Start: 1 Row 2 Columns -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-8">
+                    <div class="direct-contact-container">
+                        <hr>
+                        <ul class="contact-list">
+                          <li class="list-item"><i class="fa fa-map-marker fa-2x"><span class="contact-text place">City, State</span></i></li>
+                          
+                          <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:1-212-555-5555" title="Give me a call">(212) 555-2368</a></span></i></li>
+                          
+                          <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#" title="Send me an email">hitmeup@gmail.com</a></span></i></li>
+                          
+                        </ul>
+                        <hr>
+                        <div id="map" style="width: 100%; height: 400px;"></div>
+                      </div>
+                </div>
+                {% include 'home/include/content_right.html' %}
+            </div>
+        </div><!-- End: 1 Row 2 Columns -->
+    </div>
+    <div style="border-bottom: 1px solid rgb(231,235,239);margin-bottom: 4rem;">
+        <!-- Start: 1 Row 3 Columns -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" style="padding: 0px;">
+                    <div class="bottom-011"
+                        style="background: #ffffff;border-bottom-width: 1px;border-bottom-style: solid;">
+                        <p style="margin-bottom: 0.5rem;filter: contrast(120%);">&nbsp;ABOUT ME</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="bottom-011"
+                        style="background: #ffffff;border-bottom-width: 1px;border-bottom-style: solid;">
+                        <p style="margin-bottom: 0.5rem;filter: brightness(0%) contrast(120%);">PAGE</p>
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding: 0px;">
+                    <div class="bottom-011"
+                        style="background: #ffffff;border-bottom-width: 1px;border-bottom-style: solid;">
+                        <p style="margin-bottom: 0.5rem;filter: brightness(0%) contrast(120%);">&nbsp;NEWSLETTER<br></p>
+                    </div>
+                    <div class="row" style="width: 100%;margin: 0px;">
+                        <!-- Start: Form-1 -->
+                        <div class="col-md-6" style="width: 100%;">
+                            <form><input class="border rounded-0 form-control" type="text" placeholder="Name"
+                                    style="margin-bottom: 1rem;" /><input class="border rounded-0 form-control"
+                                    type="email" placeholder="Email" style="margin-bottom: 1rem;" /><input
+                                    class="zzz border rounded-0 form-control" type="submit" value="SUBSCRIBE NOW" />
+                            </form>
+                        </div><!-- End: Form-1 -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- End: 1 Row 3 Columns -->
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+
+        function initMap() {
+
+        var macc = {lat: 20.31693521703646, lng: 106.26963301022268};
+
+        var map = new google.maps.Map(
+
+            document.getElementById('map'), {zoom: 15, center: macc});
+
+        var marker = new google.maps.Marker({position: macc, map: map});
+
+        }
+
+    </script>
+    <script async defer 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmBDVx1CbWG0DIlILbeKIxtXfb4og8OSs&callback=initMap"></script>
+{% endblock %}

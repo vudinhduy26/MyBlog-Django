@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'home/favicons/favicon-16x16.png' %}">
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/drop.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'home/css/styles.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/search.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    {% block styles %}{% endblock %}
+</head>
+
+<body style="background: #ffffff;border-bottom-width: 1px;">
+    <div class="container">
+        <div class="d-flex justify-content-center"><img class="jello animated" src="{% static 'home/img/logo@2x.png' %}"
+                style="width: 343px;"></div>
+    </div>
+    <nav>
+        <div class="topnav" id="myTopnav">
+            <a href="{% url 'home' %}" class="active">Home</a>
+            <a href="#">Blog</a>
+            <div class="dropdown">
+                <button class="dropbtn">Categories
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content mega-menu animate">
+                    {% for item in content1 %}
+                        <ul>
+                            <li class="title">{{ item.name }}</li>
+                            {% for items in cate_childs %}
+                                {% if items.categorie_child.pk == item.pk %}
+                                    <li class="animate"><a href="{% url 'categories-child' items.categorie_child.slug items.slug_child %}">{{ items.name }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Features
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div id="search" class="dropdown-content mega-menu animate">
+                    <form action="{% url 'search_content' %}" method="post">
+                        {% csrf_token %}
+                        <div id="ok" class="d-flex justify-content-center" style="margin-top: 3rem; margin-bottom: 3rem;">
+                            <input class="okk" style="width: 50%;" type="search" name="searched">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <a href="#">About Us</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <div class="dropdown" style="float:right;margin:0 0.5%;">
+                <button class="dropbtn">USD
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content animate" style="min-width:80px;">
+                    <a href="#">USD</a>
+                    <a href="#">RUP</a>
+                </div>
+            </div>
+            <a href="#" style="float:right;margin:0 0%;"><i class="fa fa-shopping-cart"></i></a>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+    <div class="slider-011">
+        <section id="slide_items">
+            <div id="slider">
+                <div id="img_container">
+                    <img src="https://placeimg.com/300/300/animals" alt="">
+                    <img src="https://placeimg.com/300/300/any" alt="">
+                    <img src="https://placeimg.com/300/300/architecture" alt="">
+                    <img src="https://placeimg.com/300/300/nature" alt="">
+                    <img src="https://placeimg.com/300/300/people" alt="">
+                    <img src="https://placeimg.com/300/300/tech" alt="">
+                    <img src="https://placeimg.com/300/300/animals/sepia" alt="">
+                    <img src="https://placeimg.com/300/300/animals/grayscale" alt="">
+                    <img src="https://placeimg.com/300/300/animals" alt="">
+                    <img src="https://placeimg.com/300/300/architecture" alt="">
+                    <img src="https://placeimg.com/300/300/any" alt="">
+                    <img src="https://placeimg.com/300/300/architecture" alt="">
+                    <img src="https://placeimg.com/300/300/nature" alt="">
+                    <img src="https://placeimg.com/300/300/people" alt="">
+                </div>
+            </div>
+    </div><!-- Start: Footer Basic -->
+    <footer class="footer-basic" style="margin-top: 2.5rem;">
+        <!-- Start: Social Icons -->
+        <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
+                    class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a
+                href="#"><i class="icon ion-social-facebook"></i></a></div><!-- End: Social Icons -->
+        <!-- Start: Links -->
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul><!-- End: Links -->
+        <!-- Start: Copyright -->
+        <p class="copyright">V.D © 2021</p><!-- End: Copyright -->
+    </footer><!-- End: Footer Basic -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="{% static 'home/script/script.min.js' %}"></script>
+    <script src="{% static 'home/script/drop.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>
